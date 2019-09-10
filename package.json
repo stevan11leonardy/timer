@@ -1,9 +1,11 @@
 {
+  "homepage": "./",
   "name": "timer",
   "version": "0.1.0",
   "private": true,
   "main": "public/electron.js",
   "dependencies": {
+    "@material-ui/core": "^4.4.1",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.4",
     "@types/react": "16.9.2",
@@ -25,7 +27,7 @@
     "react-eject": "react-scripts eject",
     "electron-build": "electron-builder",
     "release": "npm run react-build && electron-builder --publish=always",
-    "build": "npm run react-build && npm run electron-build",
+    "build": "npm run react-build && electron-build",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
@@ -50,5 +52,11 @@
     "electron-builder": "^21.2.0",
     "eslint": "^6.3.0",
     "eslint-plugin-react": "^7.14.3"
+  },
+  "build": {
+    "appId": "com.timer",
+    "directories": {
+      "buildResources": "public"
+    }
   }
 }
