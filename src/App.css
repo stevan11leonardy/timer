@@ -5,21 +5,58 @@ html, body, #root {
 
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
   padding: 16px;
+  background: linear-gradient(230deg,#a24bcf,#4b79cf,#4bc5cf);
+  background-size: 300% 300%;
+  animation: GradientColor 30s ease infinite;
+  color: white;
+  text-align: center;
+}
+
+.timer-container {
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .timer-text {
   font-family: 'Roboto Mono'!important;
+  font-size: 11vw!important;
 }
 
 .icon-btn {
-  padding: 0!important;
+  padding: 10px!important;
+  border: 3.2px solid whitesmoke!important;
+  margin: 5px!important;
+}
+
+.settings-btn {
+  padding: 10px!important;
+  margin: 5px!important;
+  position: fixed!important;
+  right: 10px!important;
+  top: 10px!important;
+}
+
+
+.action-button {
+  margin-top: auto;
+  margin-bottom: 30px;
 }
 
 @font-face {
   font-family: "Roboto Mono";
   src: url("./font/RobotoMono-Medium.ttf");
+}
+
+@keyframes GradientColor {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }

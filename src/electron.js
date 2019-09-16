@@ -12,7 +12,15 @@ const url = require('url');
 
 let mainWindow;
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 900, height: 680 });
+  mainWindow = new BrowserWindow({
+    width: 900,
+    height: 680,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    setAutoHideMenuBar: true,
+  });
+  // mainWindow.setMenu(null);
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000'
