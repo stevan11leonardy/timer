@@ -3,6 +3,10 @@ html, body, #root {
   width: 100%;
 }
 
+.hide-cursor {
+  cursor: none;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -10,11 +14,10 @@ html, body, #root {
   align-items: center;
   height: 100%;
   padding: 16px;
-  background: linear-gradient(230deg,#a24bcf,#4b79cf,#4bc5cf);
-  background-size: 300% 300%;
-  animation: GradientColor 30s ease infinite;
+  animation: GradientColor 60s infinite ease;
   color: white;
   text-align: center;
+  overflow: hidden;
 }
 
 .timer-container {
@@ -42,12 +45,63 @@ html, body, #root {
   position: fixed!important;
   right: 10px!important;
   top: 10px!important;
+  z-index: 1400!important;
 }
-
 
 .action-button {
   margin-top: auto;
   margin-bottom: 30px;
+}
+
+.setting-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1300;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.blurry {
+  filter: blur(1rem);
+  transition: 0.5s ease-in-out;
+}
+
+.settings-container {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  background-color: white;
+  font-family: 'Apple'!important;
+  box-shadow: -1px 4px 10px rgba(0, 0, 0, 0.301);
+}
+
+.settings-overlay {
+  width: 100%;
+  height: 100%;
+}
+
+.settings-header {
+  height: 40px;
+  padding: 1rem;
+}
+
+.settings-content {
+  padding: 1.4rem;
+  padding-top: 0;
+}
+
+.settings-content-text {
+  font-family: 'Apple'!important;
+  font-size: 1rem!important;
+}
+
+.settings-title {
+  font-size: 1.4em!important;
+  font-family: 'Apple'!important;
+  padding: 0.2rem;
 }
 
 @font-face {
@@ -55,8 +109,22 @@ html, body, #root {
   src: url("./font/RobotoMono-Medium.ttf");
 }
 
-@keyframes GradientColor {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+@font-face {
+  font-family: "Apple";
+  src: url("./font/SF-UI-Display-Regular.otf");
 }
+
+@keyframes GradientColor {
+  0%{background:#4bc5cf}
+  10%{background: #a24bcf}
+  20%{background: #ce38b5}
+  30%{background: #315dee}
+  40%{background: #3a3dd4}
+  50%{background: #48af20}
+  60%{background: #a38217}
+  70%{background: #ff4800}
+  80%{background: #2965d3}
+  90%{background: #4b79cf}
+  100%{background:#4bc5cf}
+}
+
