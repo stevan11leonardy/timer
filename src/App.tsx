@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable import/no-unresolved */
 import React, { useState, useEffect, useRef } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
@@ -17,7 +19,6 @@ import IOSSwitch from './tools/switch';
 const { remote } = window.require('electron');
 
 (function checkMouseStop(mouseStopDelay: number): void {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let timeout: any;
   document.addEventListener('mousemove', (e) => {
     clearTimeout(timeout);
@@ -53,7 +54,7 @@ type CustomTextFieldProps = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const CustomTextField: React.SFC<CustomTextFieldProps> = (props) => {
+const CustomTextField: React.SFC<CustomTextFieldProps> = (props: CustomTextFieldProps) => {
   const {
     name, type, placeholder, value, onChange,
   } = props;
@@ -82,7 +83,7 @@ type SettingsProps = {
   setData: (value: Data) => void;
 }
 
-const Settings: React.SFC<SettingsProps> = (props) => {
+const Settings: React.SFC<SettingsProps> = (props: SettingsProps) => {
   const {
     open, handleSettingClick, data, setData,
   } = props;
@@ -246,6 +247,13 @@ const Settings: React.SFC<SettingsProps> = (props) => {
               </Grid>
             </Grid>
           </Grid>
+          <Grid container style={{
+            marginTop: 'auto', marginBottom: 0, padding: 8, justifyContent: 'center',
+          }}>
+            <Typography style={{ fontSize: 12 }} align="center" color="textSecondary">
+              Created By Stevan Leonardy
+            </Typography>
+          </Grid>
         </div>
       </div>
     </div>
@@ -323,6 +331,12 @@ const App: React.FC = () => {
     if (intervalId.current) {
       clearInterval(intervalId.current);
       setCurrentFocus('play');
+      const audioArr = document.getElementsByTagName('audio');
+      for (let i = 0; i < audioArr.length; i += 1) {
+        const target = document.getElementById(audioArr[i].id);
+        (target as HTMLAudioElement).currentTime = 0;
+        (target as HTMLAudioElement).pause();
+      }
     }
   }
 
@@ -357,13 +371,14 @@ const App: React.FC = () => {
       setSeconds(second);
       setMinutes(minute);
       setHours(hour);
-      ringTheBell('tick');
       if (time === 0) {
         stopTimer();
         ringTheBell('end-bell');
       } else if (time <= 10) {
         ringTheBell('countdown', i - time);
         ringTheBell('alert');
+      } else if (time <= 60) {
+        ringTheBell('tick');
       }
 
       if (time === 22) {
@@ -387,11 +402,6 @@ const App: React.FC = () => {
     } else {
       stopTimer();
       setCurrentFocus('play');
-      const audioArr = document.getElementsByTagName('audio');
-      for (let i = 0; i < audioArr.length; i += 1) {
-        const target = document.getElementById(audioArr[i].id);
-        (target as HTMLAudioElement).currentTime = 0;
-      }
     }
   }
 
@@ -442,31 +452,31 @@ const App: React.FC = () => {
       <audio
         src="audio/countdown.mp3"
         id="countdown"
-        muted={!data.playSound || currentFocus === 'play'}
+        muted={!data.playSound}
         hidden
       />
       <audio
         src="audio/continuos-tick.mp3"
         id="continuos-tick"
-        muted={!data.playSound || currentFocus === 'play'}
+        muted={!data.playSound}
         hidden
       />
       <audio
         src="audio/tick.wav"
         id="tick"
-        muted={!data.playSound || currentFocus === 'play'}
+        muted={!data.playSound}
         hidden
       />
       <audio
         src="audio/alert.mp3"
         id="alert"
-        muted={!data.playSound || currentFocus === 'play'}
+        muted={!data.playSound}
         hidden
       />
       <audio
         src="audio/end-bell.mp3"
         id="end-bell"
-        muted={!data.playSound || currentFocus === 'pause'}
+        muted={!data.playSound}
         hidden
       />
       <Settings

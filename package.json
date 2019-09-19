@@ -1,9 +1,10 @@
 {
   "homepage": "./",
   "name": "timer",
+  "author": "Stevan Leonardy",
   "version": "0.1.0",
   "private": true,
-  "main": "src/electron.js",
+  "main": "build/electron.js",
   "dependencies": {
     "@material-ui/core": "^4.4.1",
     "@material-ui/icons": "^4.4.1",
@@ -13,10 +14,8 @@
     "@types/react-dom": "16.9.0",
     "concurrently": "^4.1.2",
     "cross-env": "^5.2.1",
-    "electron": "^6.0.9",
     "electron-is-dev": "^1.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1",
@@ -30,7 +29,7 @@
     "react-eject": "react-scripts eject",
     "electron-build": "electron-builder",
     "release": "npm run react-build && electron-builder --publish=always",
-    "build": "npm run react-build && electron-build",
+    "build": "npm run react-build && electron-builder",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
@@ -53,12 +52,16 @@
     "@typescript-eslint/parser": "^2.2.0",
     "electron-builder": "^21.2.0",
     "eslint": "^6.3.0",
-    "eslint-plugin-react": "^7.14.3"
+    "eslint-plugin-react": "^7.14.3",
+    "electron": "^6.0.9"
   },
   "build": {
     "appId": "com.timer",
     "directories": {
       "buildResources": "public"
+    },
+    "win": {
+      "icon": "build/alarm-clock.png"
     }
   }
 }

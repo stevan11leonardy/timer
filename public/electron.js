@@ -15,12 +15,14 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 900,
     height: 680,
+    icon: path.join(__dirname, '../build/alarm-clock.png'),
+    frame: false,
     webPreferences: {
       nodeIntegration: true,
     },
     setAutoHideMenuBar: true,
   });
-  // mainWindow.setMenu(null);
+  mainWindow.setMenu(null);
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000'
