@@ -150,7 +150,7 @@ const Settings: React.SFC<SettingsProps> = (props: SettingsProps) => {
         className="settings-overlay"
         onClick={handleSettingClick}
         style={{
-          transform: (!open) ? `translateX(${windowWidth}px)` : 'translate(0)',
+          transform: (!open) ? `translateX(${windowWidth / 2}px)` : 'translate(0)',
           transition: '0.5s ease',
         }}
       >

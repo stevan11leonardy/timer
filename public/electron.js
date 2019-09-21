@@ -16,11 +16,9 @@ function createWindow() {
     width: 900,
     height: 680,
     icon: path.join(__dirname, '../build/alarm-clock.png'),
-    frame: false,
     webPreferences: {
       nodeIntegration: true,
     },
-    setAutoHideMenuBar: true,
   });
   mainWindow.setMenu(null);
   mainWindow.loadURL(
